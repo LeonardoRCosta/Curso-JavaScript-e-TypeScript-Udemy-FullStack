@@ -1,0 +1,12 @@
+#tabela{
+    display: flex;
+    column-gap: 150px;
+}
+
+.invalid{
+    background-color: red;
+}
+
+.valid{
+    background-color: blue;
+}
