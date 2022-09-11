@@ -1,4 +1,4 @@
-function rand(min, max) {
+function rand(min = 0, max = 3) {
   min *= 1000;
   max *= 1000;
   return Math.floor(Math.random() * (max - min + 1) + min);
@@ -17,43 +17,49 @@ function esperaAi(msg, tempo) {
   });
 }
 
-// Promise.all()  Promise.race()  Promise.resolve()  Promise.reject()
-const promises = [
-  // 'Primeiro valor',
-  esperaAi('Promise 1', 3000),
-  esperaAi('Promise 2', 5000),
-  esperaAi('Promise 3', 1000),
-  // esperaAi(1000, 1000),
-  // 'Outro valor'
-];
+// esperaAi('Fase 1', rand())
+//   .then(valor => {
+//     console.log(valor);
+//     return esperaAi('Fase 2', rand());
+//   })
+//   .then(fase => {
+//     console.log(fase);
+//     return esperaAi('Fase 3', rand());
+//   })
+//   .then(fase => {
+//     console.log(fase);
+//     return fase;
+//   })
+//   .then(fase => {
+//     console.log('Terminamos na fase:', fase);
+//   })
+//   .catch(e => console.log(e));
 
-// Promise.all(promises) // Promise.all() executa todas as promises e retorna um array com os resultados
-//     .then(function(valor) {
-//         console.log(valor);
-//     })
-//     .catch(function(erro) {
-//         console.log(erro);
-//     });
+async function executa() {
+  try {
+    const fase1 = esperaAi('Fase 1', rand());
+    console.log(fase1);
 
-// Promise.race(promises) // Promise.race() sempre retorna o valor da primeira promise a ser executada
-//     .then(function(valor) {
-//         console.log(valor);
-//     })
-//     .catch(function(erro) {
-//         console.log(erro);
-//     })
+    setTimeout(function() {
+      console.log('Essa promise estava pendente', fase1);
+    }, 1000);
 
-function baixaPagina() {
-  const emCache = true;
-  if (emCache) {
-    return Promise.resolve('Página em cache');
-  } else {
-    return esperaAi('Baixei a página', 4000);
+    const fase2 = await esperaAi('Fase 2', rand());
+    console.log(fase2);
+
+    const fase3 = await esperaAi('Fase 3', rand());
+    console.log(fase3);
+
+    console.log('Terminamos na fase:', fase3);
+  } catch (e) {
+    console.log(e);
   }
 }
+executa();
 
-baixaPagina()
-  .then(dadosPagina => {
-    console.log(dadosPagina);
-  })
-  .catch(e => console.log('Erro', e));
+/* 
+  Estados de uma promise:
+  pending: pendente -> quando a promise ainda não foi resolvida ou rejeitada, ou seja, seu estado inicial;
+  fulfilled: resolvida -> quando a promise foi resolvida com sucesso;
+  rejected: rejeitada -> quando a promise foi rejeitada por algum motivo.
+*/
