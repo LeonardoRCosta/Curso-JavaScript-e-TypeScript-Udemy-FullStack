@@ -1,0 +1,25 @@
+  <%- include('includes/head'); %>
+  <body>
+    <section class="container">
+      <!-- <h1>
+        <% if(typeof titulo !== 'undefined') { %>
+          <%= titulo %><br />
+          <%- titulo %><br />  <%#O sinal de - faz com que a tag não possua escape de caracteres, ou seja, irá executar a tag %> 
+          <% } else { %>
+            O título não foi enviado
+        <% } %>
+      </h1>
+      <h2>
+        <% numeros.forEach(num => { %>
+          <%= num %>
+        <% }); %>
+      </h2> -->
+      <h1>Lorem normal</h1>
+      <form action="/" method="post">
+        <label>Cliente</label>
+        <input type="text" name="cliente">
+        <button type="submit">Submit</button>
+      </form>
+    </section>
+  </body>
+</html>
