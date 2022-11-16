@@ -6,7 +6,7 @@
         <div class="col-lg-2"></div>
 
         <div class="col-lg-8 my-3">
-          <h1 class="text-center my-3">Login</h1>
+          <h1 class="text-center my-3">Criar conta ou Entrar</h1>
           <p class="text-center lead">Cadastre-se ou faça login abaixo</p>
 
           <%- include('includes/messages'); %>
@@ -15,7 +15,6 @@
 
             <div class="col-lg">
               <h4 class="text-center">Crie sua conta</h4>
-              <p>Preencha o formulário abaixo caso não tenha uma conta</p>
               <form action="/login/register" method="POST">
                 <input type="hidden" name="_csrf" value=<%= csrfToken %>>
                 <div class="mb-3">
